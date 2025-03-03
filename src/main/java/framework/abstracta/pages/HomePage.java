@@ -46,7 +46,7 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    private int DEFAULT_TIME = 60;
+    private int DEFAULT_TIME = 100;
 
     public void setInputSearch(String value) {
         webActions.sendText(inputSearch,value,DEFAULT_TIME);
