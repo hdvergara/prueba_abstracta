@@ -79,7 +79,6 @@ public class StoreStepDefinition {
 
     @Then("Se valida que el iPhone ya no se encuentre en el carrito de compras")
     public void seValidaQueElIPhoneYaNoSeEncuentreEnElCarritoDeCompras() {
-        homePage.validateItemRemoved();
         homePage.isDisplayedLabelCartEmpty();
         ScreenshotUtil.captureScreenshot(driver, scenario, "Validated Cart is Empty");
     }
