@@ -23,22 +23,11 @@ jobs:
       - name: 🏗️ Configurar Maven
         run: mvn --version
 
-      - name: 🛜 Instalar Chrome y ChromeDriver
+      - name: 🛜 Instalar Google Chrome
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget unzip
-          # Instalar una versión específica de Chrome
-          CHROME_VERSION="120.0.6099.224-1"
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+          sudo apt-get install -y google-chrome-stable
           google-chrome --version
-
-          # Descargar la versión de ChromeDriver compatible
-          CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_120)
-          wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
-          chromedriver --version
 
       - name: 🚀 Ejecutar tests en modo headless
         run: mvn clean test -Dheadless=true
