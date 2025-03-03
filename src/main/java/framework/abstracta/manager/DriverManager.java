@@ -1,5 +1,6 @@
 package framework.abstracta.manager;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,7 +16,10 @@ public class DriverManager {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
 
-            // Modo headless opcional con variable de entorno
+            // Descargar y configurar automáticamente el ChromeDriver
+            WebDriverManager.chromedriver().setup();
+
+            // Configurar modo headless si es necesario
             if (System.getProperty("headless", "false").equals("true")) {
                 options.addArguments("--headless");
                 options.addArguments("--window-size=1920,1080");
@@ -24,7 +28,6 @@ public class DriverManager {
             }
 
             driver = new ChromeDriver(options);
-            //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             driver.manage().window().maximize();
         }
         return driver;
